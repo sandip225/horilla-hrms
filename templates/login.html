@@ -97,18 +97,10 @@
                 {% endif %}
             </div>
             <div style="display: contents;">
-                <img src={% if white_label_company.icon %}
-                        "{% static 'images/gfuturetech-logo.png' %}"
-                        alt="{{white_label_company_name}}"
-                        style="opacity:.90; width: 200px; height: 94px;"
-                    {% else %}
-                        "{% static 'images/ui/auth-logo.png' %}" alt="Horilla"
-                    {% endif %}
+                <img src="{% if white_label_company.icon %}{{ white_label_company.icon.url }}{% else %}{% static 'images/ui/auth-logo.png' %}{% endif %}"
+                    alt="{% if white_label_company_name %}{{ white_label_company_name }}{% else %}Horilla{% endif %}"
+                    style="width: 200px;"
                 />
-                {% if white_label_company %}
-                <!-- <p style=" font-size: large; color: gray; text-align: center;" class="mt-2">{{white_label_company}}</p> !-->
-                {% endif %}
-
             </div>
         </main>
     </div>
