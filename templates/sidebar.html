@@ -68,21 +68,21 @@ function initializeSummernote(candId,searchWords,) {
 >
 <div class="oh-sidebar__company" style="padding: 14px">
     {% if request.session.selected_company_instance %}
-    <span class="mr-3">
+    <div class="oh-sidebar__company-logo" style="flex-shrink: 0; margin-right: 10px; position: relative; z-index: 1;">
       {% if not request.session.selected_company_instance %}
       <img
       src="https://ui-avatars.com/api/?name=C&background=random"
-      style="width: 34px; border-radius: 3px"
+      style="width: 34px; height: 34px; border-radius: 3px; display: block;"
       />
       {% else %}
       <img
       src="{{request.session.selected_company_instance.icon}}"
-      style="width: 34px; border-radius: 3px"
+      style="width: 34px; height: 34px; border-radius: 3px; display: block;"
       />
       {% endif %}
-    </span>
-    <div class="oh-sidebar__company-details">
-      <span class="oh-sidebar__company-title" style="font-size: 13px"
+    </div>
+    <div class="oh-sidebar__company-details" style="overflow: hidden;">
+      <span class="oh-sidebar__company-title" style="font-size: 13px; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
       >{{request.session.selected_company_instance.company}}.</span
       >
       <a href="#" class="oh-sidebar__company-link" style="font-size: 10px"
@@ -90,21 +90,21 @@ function initializeSummernote(candId,searchWords,) {
       >
     </div>
     {% else %}
-    <span class="mr-3">
+    <div class="oh-sidebar__company-logo" style="flex-shrink: 0; margin-right: 10px; position: relative; z-index: 1;">
       {% if request.user.employee_get.employee_work_info.company_id.icon == None %}
       <img
       src="https://ui-avatars.com/api/?name=C&background=random"
-      style="width: 34px; border-radius: 3px"
+      style="width: 34px; height: 34px; border-radius: 3px; display: block;"
       />
       {% else %}
       <img
       src="{{request.user.employee_get.employee_work_info.company_id.icon.url}}"
-      style="width: 34px; border-radius: 3px"
+      style="width: 34px; height: 34px; border-radius: 3px; display: block;"
       />
       {% endif %}
-    </span>
-    <div class="oh-sidebar__company-details">
-      <span class="oh-sidebar__company-title" style="font-size: 13px"
+    </div>
+    <div class="oh-sidebar__company-details" style="overflow: hidden;">
+      <span class="oh-sidebar__company-title" style="font-size: 13px; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
       >{{request.user.employee_get.employee_work_info.company_id}}.</span
       >
       <a href="#" class="oh-sidebar__company-link" style="font-size: 10px"
