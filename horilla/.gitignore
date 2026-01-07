@@ -153,3 +153,136 @@ whoosh_index/
 #PyCharm
 .idea/
 horillaenv/
+
+# Docker & Environment
+.env
+.env.local
+.env.*.local
+.env.production
+!.env.production.example
+!.env.example
+
+# Docker volumes and data
+docker_volumes/
+postgres_data/
+horilla_media/
+horilla_static/
+horilla_logs/
+
+# Docker compose overrides
+docker-compose.override.yaml
+docker-compose.local.yaml
+
+# Docker build artifacts
+.dockerignore
+Dockerfile.dev
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+
+# Database backups
+*.sql
+*.sql.gz
+*.dump
+
+# SSL certificates (if stored locally)
+*.pem
+*.key
+*.crt
+*.cert
+ssl/
+
+# Backup files
+backup/
+backups/
+*.tar.gz
+*.zip
+
+# Local development
+.local/
+.tmp/
+temp/
+
+# Environment-specific files
+.env.dev
+.env.test
+.env.staging
+
+# Nginx cache
+nginx_cache/
+
+# Application cache
+cache/
+.cache/
+
+# Collected static files (should not be committed)
+/staticfiles/
+/static/collected/
+
+# Media uploads (should use volumes)
+/media/uploads/
+/media/temp/
+
+# Database files
+*.sqlite3
+*.sqlite3-journal
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

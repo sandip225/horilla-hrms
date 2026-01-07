@@ -225,7 +225,7 @@ def rotate_shift():
     rotating_shifts = RotatingShiftAssign.objects.filter(is_active=True)
     today = datetime.now().date()
     r_shifts = rotating_shifts.filter(start_date__lte=today)
-    rotating_shifts_modified = None
+    rotating_shifts_modified = rotating_shifts.none()
     for r_shift in r_shifts:
         emp_shift = rotating_shifts.filter(
             employee_id=r_shift.employee_id, start_date__lte=today
@@ -235,17 +235,18 @@ def rotate_shift():
         )
         emp_shift.update(is_active=False)
 
-    for rotating_shift in rotating_shifts_modified:
-        based_on = rotating_shift.based_on
-        # after day condition
-        if based_on == "after":
-            shift_rotate_after_day(rotating_shift, today)
-        # weekly condition
-        elif based_on == "weekly":
-            shift_rotate_weekend(rotating_shift, today)
-        # monthly condition
-        elif based_on == "monthly":
-            shift_rotate_every(rotating_shift, today)
+    if rotating_shifts_modified:
+        for rotating_shift in rotating_shifts_modified:
+            based_on = rotating_shift.based_on
+            # after day condition
+            if based_on == "after":
+                shift_rotate_after_day(rotating_shift, today)
+            # weekly condition
+            elif based_on == "weekly":
+                shift_rotate_weekend(rotating_shift, today)
+            # monthly condition
+            elif based_on == "monthly":
+                shift_rotate_every(rotating_shift, today)
 
     return
 

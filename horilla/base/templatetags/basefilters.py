@@ -153,3 +153,57 @@ def readable(value):
     except:
         value = value
     return value
+
+
+@register.filter(name="get_company_logo")
+def get_company_logo(company):
+    """
+    This filter returns a company logo URL with fallback to avatar API if file doesn't exist.
+    It handles missing media files gracefully by generating a fallback avatar.
+    
+    args:
+        company: Company instance
+    
+    returns:
+        URL string for the company logo or fallback avatar
+    """
+    if not company:
+        return "https://ui-avatars.com/api/?name=C&background=random&size=34"
+    
+    # Check if icon exists and file is accessible
+    if company.icon:
+        try:
+            # Try to access the file to check if it exists
+            if company.icon.storage.exists(company.icon.name):
+                return company.icon.url
+        except Exception:
+            pass
+    
+    # Fallback to avatar API with company name
+    company_name = company.company[:1] if company.company else "C"
+    return f"https://ui-avatars.com/api/?name={company_name}&background=random&size=34&bold=true&font-size=0.4"
+
+
+@register.filter(name="get_company_logo_url")
+def get_company_logo_url(icon_field):
+    """
+    This filter safely returns a logo URL from a FileField with fallback.
+    
+    args:
+        icon_field: FileField instance
+    
+    returns:
+        URL string or fallback avatar
+    """
+    if not icon_field:
+        return "https://ui-avatars.com/api/?name=C&background=random&size=34"
+    
+    try:
+        # Check if file exists in storage
+        if icon_field.storage.exists(icon_field.name):
+            return icon_field.url
+    except Exception:
+        pass
+    
+    # Fallback to avatar
+    return "https://ui-avatars.com/api/?name=C&background=random&size=34&bold=true&font-size=0.4"
